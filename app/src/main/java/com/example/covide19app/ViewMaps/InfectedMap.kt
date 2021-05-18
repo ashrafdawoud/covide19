@@ -1,20 +1,22 @@
 package com.example.covide19app.ViewMaps
 
 import android.content.res.Resources
+import android.graphics.Color
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.example.covide19app.R
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.Circle
+import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MapStyleOptions
-import com.google.android.gms.maps.model.MarkerOptions
+
 
 class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
 
@@ -54,9 +56,19 @@ class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
             Log.e("added", "Can't find style. Error: ", e)
         }
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(30.033333, 31.233334)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val circle: Circle = mMap.addCircle(CircleOptions()
+                .center(LatLng(30.033333, 31.533334))
+                .radius(10000.0)
+                .strokeColor(Color.RED)
+                .fillColor(Color.RED))
+        val circle2: Circle = mMap.addCircle(CircleOptions()
+                .center(LatLng(30.533333, 31.133334))
+                .radius(10000.0)
+                .strokeColor(Color.RED)
+                .fillColor(Color.RED))
+        val sydney = LatLng(30.033333, 31.533334)
+        val zoomLevel = 6.0f //This goes up to 21
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
     }
     fun back2(view: View?) {
         finish()

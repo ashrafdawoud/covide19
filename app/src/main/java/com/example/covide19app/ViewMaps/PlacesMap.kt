@@ -55,7 +55,17 @@ class PlacesMap : AppCompatActivity(), OnMapReadyCallback {
         }
         // Add a marker in Sydney and move the camera
         val sydney = LatLng(30.033333, 31.233334)
+        val sydney1 = LatLng(30.033334, 31.233334)
+        val sydney2 = LatLng(30.033335, 31.233334)
+        val sydney4 = LatLng(30.033336, 31.233334)
+        val sydney5 = LatLng(30.033336, 31.233334)
+        val sydney6 = LatLng(30.033338, 31.233334)
         mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        mMap.addMarker(MarkerOptions().position(sydney1).title("Marker in Sydney"))
+        mMap.addMarker(MarkerOptions().position(sydney2).title("Marker in Sydney"))
+        mMap.addMarker(MarkerOptions().position(sydney4).title("Marker in Sydney"))
+        mMap.addMarker(MarkerOptions().position(sydney5).title("Marker in Sydney"))
+        mMap.addMarker(MarkerOptions().position(sydney6).title("Marker in Sydney"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
     }
     fun back2(view: View?) {

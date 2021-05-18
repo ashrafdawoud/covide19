@@ -20,7 +20,12 @@
         android:supportsRtl="true"
         android:testOnly="false"
         android:theme="@style/Theme.Covide19App">
-        <activity android:name=".View.RegisterInfected"></activity>
+        <activity android:name=".View.AdviceActivity"></activity>
+        <activity
+            android:name=".View.RegisterInfected"
+            android:theme="@style/Theme.Design.NoActionBar">
+            >
+        </activity>
         <activity android:name=".View.StatisticsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -40,7 +45,9 @@
         <activity
             android:name=".ViewMaps.PlacesMap"
             android:label="@string/title_activity_places_map" />
-        <activity android:name=".View.MainActivity" />
+        <activity android:name=".View.MainActivity">
+
+        </activity>
         <activity android:name=".View.SignupActivity" />
         <activity android:name=".View.LoginActivity">
             <intent-filter>

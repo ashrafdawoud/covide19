@@ -106,7 +106,7 @@
             android:layout_marginTop="14dp"
             />
         <EditText
-            android:id="@+id/name1"
+            android:id="@+id/phone"
             android:textColor="@color/white"
             android:textColorHint="#979595"
             android:layout_width="match_parent"
@@ -116,8 +116,7 @@
             android:elevation="3dp"
             android:hint="phone Number"
             android:inputType="textEmailAddress"
-            android:paddingStart="5dp"
-            android:paddingend="5dp"
+            android:padding="5dp"
             android:textCursorDrawable="@drawable/coursor_color"
             android:layout_marginTop="5dp"
             android:drawableStart="@drawable/ic_baseline_local_phone_24"
@@ -137,10 +136,11 @@
             android:orientation="horizontal"
             android:layout_marginTop="5dp">
             <LinearLayout
+                android:id="@+id/sore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/unselected_tap"
+                android:background="@drawable/selected_tap"
                 android:padding="3dp"
                 android:layout_margin="3dp"
                 android:layout_weight="1">
@@ -162,10 +162,11 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/coach"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/unselected_tap"
+                android:background="@drawable/selected_tap"
                 android:padding="3dp"
                 android:layout_margin="3dp"
                 android:layout_weight="1">
@@ -187,17 +188,18 @@
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/breath"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="@drawable/unselected_tap"
+                android:background="@drawable/selected_tap"
                 android:padding="3dp"
                 android:layout_margin="3dp"
                 android:layout_weight="1">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Male"
+                    android:text="short breath"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="18dp"
@@ -211,8 +213,83 @@
                     android:tint="@color/white"
                     android:layout_marginTop="10dp"/>
             </LinearLayout>
-
         </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="from how long you feel unwell ? "
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="14dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp">
+            <TextView
+                android:id="@+id/more_than_weak"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="more than a weak"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/unselected_tap"/>
+            <TextView
+                android:id="@+id/less_than_weak"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="less than a weak"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add your current location "
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:layout_marginTop="14dp"
+            />
+        <TextView
+            android:id="@+id/location"
+            android:textColor="@color/white"
+            android:textColorHint="#979595"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/unselected_tap"
+            android:elevation="3dp"
+            android:text="add your location"
+            android:textSize="19dp"
+            android:gravity="center_vertical"
+            android:inputType="textEmailAddress"
+            android:padding="5dp"
+            android:textCursorDrawable="@drawable/coursor_color"
+            android:layout_marginTop="5dp"
+            android:drawableStart="@drawable/ic_baseline_local_phone_24"
+            android:drawablePadding="8dp"
+            />
+        <Button
+            android:id="@+id/done"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:backgroundTint="@color/major"
+            android:text="Done"
+            android:textColor="#fff"
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     </LinearLayout>

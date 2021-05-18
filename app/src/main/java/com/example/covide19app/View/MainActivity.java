@@ -37,9 +37,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(View view) {
+        finishAffinity();
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     public void advises(View view) {
+        Intent intent = new Intent(this, AdviceActivity.class);
+        startActivity(intent);
     }
 
 
