@@ -1,4 +1,4 @@
-package com.example.lawerapp.Utils
+package com.example.covide19app.Utils
 
 import android.app.Activity
 import android.os.Build

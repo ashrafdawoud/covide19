@@ -18,6 +18,5 @@ class TotalCaseEntity(
         val critical: String,
         @SerializedName("deaths")
         @Expose
-        val deaths: String,
-
+        val deaths: String
         )

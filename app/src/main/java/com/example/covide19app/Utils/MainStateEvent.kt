@@ -1,4 +1,4 @@
-package com.example.lawerapp.Utils
+package com.example.covide19app.Utils
 
 sealed class MainStateEvent{
 
