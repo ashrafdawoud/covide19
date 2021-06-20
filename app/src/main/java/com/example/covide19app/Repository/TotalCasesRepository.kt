@@ -7,6 +7,7 @@ import com.example.covide19app.Utils.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
+import javax.inject.Named
 
 class TotalCasesRepository  constructor(
         val totalCasesInterfaces: TotalCasesInterfaces,

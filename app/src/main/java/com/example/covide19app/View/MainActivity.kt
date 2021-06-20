@@ -20,6 +20,7 @@ import com.example.covide19app.ViewModel.TotalCasesViewModel
 import com.example.covide19app.databinding.ActivityMainBinding
 import com.google.android.gms.common.data.DataBufferUtils
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Named
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

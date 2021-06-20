@@ -6,9 +6,11 @@ import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ApplicationComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -18,6 +20,7 @@ object TotalCasesRetrofitModel {
 
     @Singleton
     @Provides
+    @Named("retrofit2")
     fun provideGsonBuilder(): Gson {
         return GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
@@ -26,7 +29,8 @@ object TotalCasesRetrofitModel {
 
     @Singleton
     @Provides
-    fun provideRetrofit(gson: Gson): Retrofit.Builder {
+    @Named("retrofit2")
+    fun provideRetrofit(@Named("retrofit2") gson: Gson): Retrofit.Builder {
         return Retrofit.Builder()
                 .baseUrl("https://covid-19-data.p.rapidapi.com/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
@@ -34,7 +38,7 @@ object TotalCasesRetrofitModel {
 
     @Singleton
     @Provides
-    fun provideBlogService(retrofit: Retrofit.Builder): TotalCasesInterfaces {
+    fun provideBlogService( @Named("retrofit2") retrofit: Retrofit.Builder): TotalCasesInterfaces {
         return retrofit
                 .build()
                 .create(TotalCasesInterfaces::class.java)

@@ -3,6 +3,7 @@ package com.example.covide19app.Retrofit
 import com.example.covide19app.Retrofit.Entities.TotalCaseEntity
 import retrofit2.http.GET
 import retrofit2.http.Headers
+import javax.inject.Named
 
 interface TotalCasesInterfaces {
     @Headers(

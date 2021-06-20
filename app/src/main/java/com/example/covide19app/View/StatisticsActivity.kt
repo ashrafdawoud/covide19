@@ -7,42 +7,44 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.databinding.DataBindingUtil
 import com.example.covide19app.R
+import com.example.covide19app.databinding.ActivityStatisticsBinding
 import org.eazegraph.lib.charts.BarChart
 import org.eazegraph.lib.charts.PieChart
 import org.eazegraph.lib.models.BarModel
 import org.eazegraph.lib.models.PieModel
 
 class StatisticsActivity : AppCompatActivity() {
+    var death:Int=0
+    var recoverd:Int=0
+    var total:Int=0
+    lateinit var binding:ActivityStatisticsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
+        binding=DataBindingUtil.setContentView(this,R.layout.activity_statistics)
         activityDesign()
         contentview()
     }
 
     fun contentview() {
+        val bundel=intent.extras
+        death=bundel?.getInt("death",0)!!
+        recoverd=bundel?.getInt("recoverd",0)!!
+        total=bundel?.getInt("total",0)!!
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
-        val mBarChart = findViewById<View>(R.id.barchart) as BarChart
-        mBarChart.addBar(BarModel(2.3f, -0xedcbaa))
-        mBarChart.addBar(BarModel(2f, -0xcbcbaa))
-        mBarChart.addBar(BarModel(3.3f, -0xa9cbaa))
-        mBarChart.addBar(BarModel(1.1f, -0x78c0aa))
-        mBarChart.addBar(BarModel(2.7f, -0xa9480f))
-        mBarChart.addBar(BarModel(2f, -0xcbcbaa))
-        mBarChart.addBar(BarModel(0.4f, -0xe00b54))
-        mBarChart.addBar(BarModel(4f, -0xe45b1a))
-        mBarChart.startAnimation()
         val mPieChart = findViewById<View>(R.id.piechart) as PieChart
-        mPieChart.addPieSlice(PieModel("Freetime", 15f, Color.parseColor("#FE6DA8")))
-        mPieChart.addPieSlice(PieModel("Sleep", 25f, Color.parseColor("#56B7F1")))
-        mPieChart.addPieSlice(PieModel("Work", 35f, Color.parseColor("#CDA67F")))
-        mPieChart.addPieSlice(PieModel("Eating", 9f, Color.parseColor("#FED70E")))
+        mPieChart.addPieSlice(PieModel("death", death.toFloat(), Color.parseColor("#F10000")))
+        mPieChart.addPieSlice(PieModel("recoverd", recoverd.toFloat(), Color.parseColor("#25CDFF")))
         mPieChart.startAnimation()
+        binding.death.setText(death.toString())
+        binding.totoal.setText(total.toString())
+        binding.recoverd.setText(recoverd.toString())
     }
 
     fun activityDesign() {
