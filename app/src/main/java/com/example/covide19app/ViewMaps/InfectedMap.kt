@@ -56,7 +56,7 @@ class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
             Log.e("added", "Can't find style. Error: ", e)
         }
         // Add a marker in Sydney and move the camera
-        val circle: Circle = mMap.addCircle(CircleOptions()
+        /*val circle: Circle = mMap.addCircle(CircleOptions()
                 .center(LatLng(30.033333, 31.533334))
                 .radius(10000.0)
                 .strokeColor(Color.RED)
@@ -68,7 +68,7 @@ class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
                 .fillColor(Color.RED))
         val sydney = LatLng(30.033333, 31.533334)
         val zoomLevel = 6.0f //This goes up to 21
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));*/
     }
     fun back2(view: View?) {
         finish()

@@ -1,7 +1,13 @@
 package com.example.covide19app.DI
 
+import com.example.covide19app.Repository.CountriesRepository
+import com.example.covide19app.Repository.PlacesRepository
 import com.example.covide19app.Repository.TotalCasesRepository
+import com.example.covide19app.Retrofit.CountryRetrofitInterface
+import com.example.covide19app.Retrofit.EntityMapper.CountryMapper
+import com.example.covide19app.Retrofit.EntityMapper.PlacesMapper
 import com.example.covide19app.Retrofit.EntityMapper.TotalCasesMapper
+import com.example.covide19app.Retrofit.RetrofitInterface
 import com.example.covide19app.Retrofit.TotalCasesInterfaces
 import dagger.Module
 import dagger.Provides
@@ -19,6 +25,22 @@ object RepositoriesModel {
             totalCasesMapper: TotalCasesMapper
     ):TotalCasesRepository{
         return TotalCasesRepository(totalCasesInterfaces,totalCasesMapper)
+    }
+    @Singleton
+    @Provides
+    fun provideCountyRepo(
+            countryRetrofitInterface: CountryRetrofitInterface,
+            countryMapper: CountryMapper
+    ):CountriesRepository{
+        return CountriesRepository(countryRetrofitInterface,countryMapper)
+    }
+    @Singleton
+    @Provides
+    fun providePlacesRepo(
+            retrofitInterface: RetrofitInterface,
+            placesMapper: PlacesMapper
+    ):PlacesRepository{
+        return PlacesRepository(retrofitInterface,placesMapper)
     }
 
 }

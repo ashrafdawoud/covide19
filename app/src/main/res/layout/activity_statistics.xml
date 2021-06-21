@@ -23,7 +23,16 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/ToolbarTheme" />
+                android:theme="@style/ToolbarTheme" >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Egypt Cases"
+                    android:textColor="@color/white"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:layout_gravity="center"/>
+            </androidx.appcompat.widget.Toolbar>
 
             <org.eazegraph.lib.charts.PieChart
                 android:id="@+id/piechart"
@@ -152,7 +161,59 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:background="@color/water"
+                android:elevation="10dp"
+                android:layout_marginTop="10dp">
+                <TextView
+                    android:id="@+id/country_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Country"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:textAlignment="viewStart"
 
+                    />
+                <TextView
+                    android:id="@+id/totalCases"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total Cases"
+                    android:textSize="18dp"
+                    android:textColor="#25CDFF"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:textAlignment="center"
+
+                    />
+                <TextView
+                    android:id="@+id/deathCases"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Death"
+                    android:textSize="18dp"
+                    android:textColor="#F10000"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:lines="1"
+                    android:textAlignment="center"
+
+                    />
+            </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/countryRecy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>
