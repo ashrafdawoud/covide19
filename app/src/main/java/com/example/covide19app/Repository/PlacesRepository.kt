@@ -1,5 +1,6 @@
 package com.example.covide19app.Repository
 
+import android.util.Log
 import com.example.covide19app.Model.CountriesModel
 import com.example.covide19app.Model.PlacesModel
 import com.example.covide19app.Retrofit.EntityMapper.PlacesMapper
@@ -19,6 +20,7 @@ class PlacesRepository constructor(
             val allPlacesModels= placesMapper.mapEntityListToModel(allPlacesNetwork.results)
             emit(DataState.Success(allPlacesModels))
         }catch (e:Exception){
+            Log.e("brain_explosion",e.message.toString())
             emit(DataState.Error(e))
         }
 

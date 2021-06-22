@@ -21,4 +21,13 @@ class PlacesEntity(
         @SerializedName("address")
         @Expose
         val address: String,
+        @SerializedName("phone")
+        @Expose
+        val phone: String,
+        @SerializedName("name")
+        @Expose
+        val name: String,
+        @SerializedName("status")
+        @Expose
+        val status: String,
 )

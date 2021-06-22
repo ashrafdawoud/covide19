@@ -5,4 +5,7 @@ data class PlacesModel (
     val lang: String,
     val type: String,
     val address: String,
+    val phone: String,
+    val name: String,
+    val status: String,
 )

@@ -12,7 +12,10 @@ class PlacesMapper @Inject constructor() : EntityMaper<PlacesEntity, PlacesModel
                lang = retrofitEntity.lang,
                long = retrofitEntity.long,
                type = retrofitEntity.type,
-               address = retrofitEntity.address
+               address = retrofitEntity.address,
+               name = retrofitEntity.name,
+               status = retrofitEntity.status,
+               phone = retrofitEntity.phone,
        )
     }
 
@@ -21,7 +24,10 @@ class PlacesMapper @Inject constructor() : EntityMaper<PlacesEntity, PlacesModel
                 lang = domainModel.lang,
                 long = domainModel.long,
                 type = domainModel.type,
-                address = domainModel.address
+                address = domainModel.address,
+                name = domainModel.name,
+                status = domainModel.status,
+                phone = domainModel.phone,
         )
     }
     fun mapEntityListToModel(entites :List<PlacesEntity>):List<PlacesModel>{
