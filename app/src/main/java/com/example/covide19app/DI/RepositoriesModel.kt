@@ -1,6 +1,7 @@
 package com.example.covide19app.DI
 
 import com.example.covide19app.Repository.CountriesRepository
+import com.example.covide19app.Repository.InfectedPoapleRepository
 import com.example.covide19app.Repository.PlacesRepository
 import com.example.covide19app.Repository.TotalCasesRepository
 import com.example.covide19app.Retrofit.CountryRetrofitInterface
@@ -41,6 +42,14 @@ object RepositoriesModel {
             placesMapper: PlacesMapper
     ):PlacesRepository{
         return PlacesRepository(retrofitInterface,placesMapper)
+    }
+    @Singleton
+    @Provides
+    fun provideInfectedPoapleRepo(
+            retrofitInterface: RetrofitInterface,
+
+    ):InfectedPoapleRepository{
+        return InfectedPoapleRepository(retrofitInterface)
     }
 
 }
