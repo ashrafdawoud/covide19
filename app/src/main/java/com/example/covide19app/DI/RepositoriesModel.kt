@@ -1,14 +1,8 @@
 package com.example.covide19app.DI
 
-import com.example.covide19app.Repository.CountriesRepository
-import com.example.covide19app.Repository.InfectedPoapleRepository
-import com.example.covide19app.Repository.PlacesRepository
-import com.example.covide19app.Repository.TotalCasesRepository
+import com.example.covide19app.Repository.*
 import com.example.covide19app.Retrofit.CountryRetrofitInterface
-import com.example.covide19app.Retrofit.EntityMapper.CountryMapper
-import com.example.covide19app.Retrofit.EntityMapper.InfectedPoapleMapper
-import com.example.covide19app.Retrofit.EntityMapper.PlacesMapper
-import com.example.covide19app.Retrofit.EntityMapper.TotalCasesMapper
+import com.example.covide19app.Retrofit.EntityMapper.*
 import com.example.covide19app.Retrofit.RetrofitInterface
 import com.example.covide19app.Retrofit.TotalCasesInterfaces
 import dagger.Module
@@ -51,6 +45,14 @@ object RepositoriesModel {
             infectedPoapleMapper: InfectedPoapleMapper
     ):InfectedPoapleRepository{
         return InfectedPoapleRepository(retrofitInterface,infectedPoapleMapper)
+    }
+    @Singleton
+    @Provides
+    fun provideAdvicesRepository(
+            retrofitInterface: RetrofitInterface,
+            advicesMapper: AdvicesMapper
+    ): AdvicesRepository {
+        return AdvicesRepository(retrofitInterface,advicesMapper)
     }
 
 }

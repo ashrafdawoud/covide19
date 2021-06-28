@@ -95,7 +95,7 @@ class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
         })
     }
     fun setupMap(long: String?, lang: String?){
-        val sydney = LatLng(long!!.toDouble(), lang!!.toDouble())
+        val sydney = LatLng(lang!!.toDouble(), long!!.toDouble())
         val marker: MarkerOptions = MarkerOptions().position(sydney).title("infected")
         marker.icon(bitmapDescriptorFromVector(this, R.drawable.ic_phrmacy))
         mMap.addMarker(marker)
