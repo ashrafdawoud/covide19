@@ -1,27 +1,34 @@
 package com.example.covide19app.ViewMaps
 
+import android.content.Context
 import android.content.res.Resources
-import android.graphics.Color
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
+import com.example.covide19app.Model.InfectedPoapleModel
 import com.example.covide19app.R
+import com.example.covide19app.Utils.DataState
+import com.example.covide19app.ViewModel.InfectedPoapleViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.Circle
-import com.google.android.gms.maps.model.CircleOptions
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MapStyleOptions
+import com.google.android.gms.maps.model.*
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
-
+    val viewmodel:InfectedPoapleViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_infected_map)
@@ -55,20 +62,8 @@ class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
         } catch (e: Resources.NotFoundException) {
             Log.e("added", "Can't find style. Error: ", e)
         }
-        // Add a marker in Sydney and move the camera
-        /*val circle: Circle = mMap.addCircle(CircleOptions()
-                .center(LatLng(30.033333, 31.533334))
-                .radius(10000.0)
-                .strokeColor(Color.RED)
-                .fillColor(Color.RED))
-        val circle2: Circle = mMap.addCircle(CircleOptions()
-                .center(LatLng(30.533333, 31.133334))
-                .radius(10000.0)
-                .strokeColor(Color.RED)
-                .fillColor(Color.RED))
-        val sydney = LatLng(30.033333, 31.533334)
-        val zoomLevel = 6.0f //This goes up to 21
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, zoomLevel));*/
+        viewmodel.getInfected()
+        listObserverdata()
     }
     fun back2(view: View?) {
         finish()
@@ -81,5 +76,41 @@ class InfectedMap : AppCompatActivity(), OnMapReadyCallback {
             window.statusBarColor = resources.getColor(R.color.water)
             window.navigationBarColor = resources.getColor(R.color.water)
         }
+    }
+    fun listObserverdata(){
+        viewmodel.datasateReturn.observe(this, Observer {
+            when (it) {
+                is DataState.Success<List<InfectedPoapleModel>> -> {
+                    for (placemodel in it.data) {
+                        Log.e("datalist", it.data.size.toString())
+                        setupMap(placemodel.long, placemodel.lat)
+                    }
+                }
+                is DataState.Error -> {
+                    Log.e("errormap", it.exception.toString())
+                }
+                is DataState.Loading -> {
+                }
+            }
+        })
+    }
+    fun setupMap(long: String?, lang: String?){
+        val sydney = LatLng(long!!.toDouble(), lang!!.toDouble())
+        val marker: MarkerOptions = MarkerOptions().position(sydney).title("infected")
+        marker.icon(bitmapDescriptorFromVector(this, R.drawable.ic_phrmacy))
+        mMap.addMarker(marker)
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(31.233334,30.033333), 4.0f))
+    }
+    private fun bitmapDescriptorFromVector(context: Context, @DrawableRes vectorDrawableResourceId: Int): BitmapDescriptor? {
+        val background = ContextCompat.getDrawable(context, R.drawable.background_marker)
+        background!!.setBounds(0, 0, background.intrinsicWidth, background.intrinsicHeight)
+        val vectorDrawable = ContextCompat.getDrawable(context, vectorDrawableResourceId)
+        vectorDrawable!!.setBounds(40, 20, vectorDrawable.intrinsicWidth + 40, vectorDrawable.intrinsicHeight + 20)
+        val bitmap = Bitmap.createBitmap(background.intrinsicWidth, background.intrinsicHeight, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        background.draw(canvas)
+        vectorDrawable.draw(canvas)
+        val smallMarker = Bitmap.createScaledBitmap(bitmap, 100, 100, false)
+        return BitmapDescriptorFactory.fromBitmap(smallMarker)
     }
 }

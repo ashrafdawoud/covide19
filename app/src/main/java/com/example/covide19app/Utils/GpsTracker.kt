@@ -147,7 +147,7 @@ internal class GpsTracker(private val mContext: Context) : Service(), LocationLi
      * Function to show settings alert dialog
      * On pressing Settings button will lauch Settings Options
      */
-    fun showSettingsAlert() {
+    fun showSettingsAlert(activity: Activity) {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(mContext)
 
         // Setting Dialog Title
@@ -159,11 +159,15 @@ internal class GpsTracker(private val mContext: Context) : Service(), LocationLi
         // On pressing Settings button
         alertDialog.setPositiveButton("Settings", DialogInterface.OnClickListener { dialog, which ->
             val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-            mContext.startActivity(intent)
+            //mContext.startActivity(intent)
+            activity.startActivityForResult(intent,1)
         })
 
         // on pressing cancel button
-        alertDialog.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        alertDialog.setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, which ->
+            dialog.cancel()
+            activity.finish()
+          })
         alertDialog.show()
     }
 

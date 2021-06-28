@@ -6,6 +6,7 @@ import com.example.covide19app.Repository.PlacesRepository
 import com.example.covide19app.Repository.TotalCasesRepository
 import com.example.covide19app.Retrofit.CountryRetrofitInterface
 import com.example.covide19app.Retrofit.EntityMapper.CountryMapper
+import com.example.covide19app.Retrofit.EntityMapper.InfectedPoapleMapper
 import com.example.covide19app.Retrofit.EntityMapper.PlacesMapper
 import com.example.covide19app.Retrofit.EntityMapper.TotalCasesMapper
 import com.example.covide19app.Retrofit.RetrofitInterface
@@ -47,9 +48,9 @@ object RepositoriesModel {
     @Provides
     fun provideInfectedPoapleRepo(
             retrofitInterface: RetrofitInterface,
-
+            infectedPoapleMapper: InfectedPoapleMapper
     ):InfectedPoapleRepository{
-        return InfectedPoapleRepository(retrofitInterface)
+        return InfectedPoapleRepository(retrofitInterface,infectedPoapleMapper)
     }
 
 }

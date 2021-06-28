@@ -209,7 +209,7 @@ class PlacesMap : AppCompatActivity(), OnMapReadyCallback ,GoogleMap.OnMarkerCli
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 12.0f))
             //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
         } else {
-            gpsTracker!!.showSettingsAlert()
+            gpsTracker!!.showSettingsAlert(this)
         }
     }
 

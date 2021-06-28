@@ -269,14 +269,14 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/unselected_tap"
             android:elevation="3dp"
-            android:text="add your location"
+            android:text="we will get your location automatically"
             android:textSize="19dp"
             android:gravity="center_vertical"
             android:inputType="textEmailAddress"
             android:padding="5dp"
             android:textCursorDrawable="@drawable/coursor_color"
             android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_baseline_local_phone_24"
+            android:drawableStart="@drawable/ic_baseline_edit_location_24"
             android:drawablePadding="8dp"
             />
         <Button
@@ -292,6 +292,5 @@
             android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>
-
     </LinearLayout>
 </ScrollView>

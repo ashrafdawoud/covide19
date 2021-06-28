@@ -1,6 +1,8 @@
 package com.example.covide19app.View
 
+import android.Manifest
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -9,11 +11,17 @@ import android.widget.*
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import com.example.covide19app.R
 import com.example.covide19app.Retrofit.Entities.SucssesEntity
 import com.example.covide19app.Utils.DataState
+import com.example.covide19app.Utils.GpsTracker
 import com.example.covide19app.ViewModel.InfectedPoapleViewModel
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.HashMap
 
@@ -30,6 +38,7 @@ class RegisterInfected : AppCompatActivity() {
     lateinit var ageedittext:EditText
     lateinit var phone:EditText
     lateinit var sharedPrefrence:SharedPreferences
+    private var gpsTracker: GpsTracker? = null
     var age=""
     var gander="male"
     var content_number=""
@@ -46,6 +55,7 @@ class RegisterInfected : AppCompatActivity() {
 
     }
     fun contentview(){
+        locationtest()
         sharedPrefrence = this.getSharedPreferences("user", MODE_PRIVATE)
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
@@ -169,6 +179,53 @@ class RegisterInfected : AppCompatActivity() {
                 }
             }
         })
+    }
+    fun locationtest(){
+        try {
+            if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101)
+            }else{
+                getloactionTest()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+    fun getloactionTest(){
+        gpsTracker = GpsTracker(this)
+        Log.e("loaction_success","called")
+        if (gpsTracker!!.canGetLocation()) {
+            val latitude = gpsTracker!!.latitude
+            val longitude = gpsTracker!!.longitude
+            //tvLatitude!!.text = latitude.toString()
+            //tvLongitude!!.text = longitude.toString()
+            Log.e("loaction_success",latitude.toString() +" " +longitude.toString())
+            lat=latitude.toString()
+            long=longitude.toString()
+            //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        } else {
+            gpsTracker!!.showSettingsAlert(this)
+        }
+    }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            101 -> {
+                if (grantResults.size > 0 && grantResults[0] === PackageManager.PERMISSION_GRANTED) {
+                    //If user presses allow
+                    Toast.makeText(this, "Permission granted!", Toast.LENGTH_SHORT).show()
+                    getloactionTest()
+                } else {
+                    //If user presses deny
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
+                    locationtest()
+                }
+            }
+        }
+    }
+    override fun onResume() {
+        getloactionTest()
+        super.onResume()
     }
 }
