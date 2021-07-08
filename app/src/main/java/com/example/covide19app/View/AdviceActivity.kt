@@ -32,6 +32,7 @@ class AdviceActivity : AppCompatActivity() {
     }
     fun contentview(){
         viewmodel.getAllCountries()
+        listentoObservables()
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
@@ -61,7 +62,7 @@ class AdviceActivity : AppCompatActivity() {
         viewmodel.dataset.observe(this, Observer {
             when(it){
                 is DataState.Success<List<AdvicesModel>> -> {
-                    adviceAdapter=AdviceAdapter(it.data)
+                    adviceAdapter=AdviceAdapter(this,it.data)
                     advicerecy.setAdapter(adviceAdapter)
                     adviceAdapter.notifyDataSetChanged()
                 }

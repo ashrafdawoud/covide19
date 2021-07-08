@@ -17,8 +17,8 @@ class ActivityDesign @Inject constructor() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            window.statusBarColor = activity.resources.getColor(R.color.white)
-            window.navigationBarColor = activity.resources.getColor(R.color.white)
+            window.statusBarColor = activity.resources.getColor(R.color.major_back)
+            window.navigationBarColor = activity.resources.getColor(R.color.major_back)
         }
     }
 }
