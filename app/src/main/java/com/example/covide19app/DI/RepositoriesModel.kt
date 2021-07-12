@@ -54,5 +54,13 @@ object RepositoriesModel {
     ): AdvicesRepository {
         return AdvicesRepository(retrofitInterface,advicesMapper)
     }
+    @Singleton
+    @Provides
+    fun provideDoctorRepository(
+            retrofitInterface: RetrofitInterface,
+            doctorsMaper: DoctorsMaper
+    ): DoctorRepository {
+        return DoctorRepository(retrofitInterface,doctorsMaper)
+    }
 
 }

@@ -20,6 +20,7 @@ class InfectedPoapleRepository constructor(
             Log.e("appointmentrepo", "respond " + res.objectId )
             emit(DataState.Success(res))
         }catch (e: Exception){
+            Log.e("appointmentrepo", e.message.toString() )
             emit(DataState.Error(e))
         }
     }

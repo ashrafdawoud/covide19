@@ -52,6 +52,9 @@
             android:label="@string/title_activity_places_map" />
         <activity android:name=".View.MainActivity"></activity>
         <activity android:name=".View.SignupActivity" />
+        <activity android:name=".View.DoctorsListActivity" />
+        <activity android:name=".View.LawyerProfileActivity" />
+        <activity android:name=".View.MapsActivity" />
         <activity android:name=".View.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

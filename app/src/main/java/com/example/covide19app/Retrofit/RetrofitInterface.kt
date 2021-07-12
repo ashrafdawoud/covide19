@@ -33,6 +33,13 @@ interface RetrofitInterface {
     )
     @GET("Advices")
     suspend fun getAdvices():AdvicesRetrofitEntity
+    @Headers(
+            "X-Parse-Application-Id:xZ6X6aaZPAEfUO4vaDXViwBDqyjJnUlpHM3Dvyov",
+            "X-Parse-REST-API-Key:ydcv4AeewnqriN10gkTgQ8IysZ95NCdnE9Na54pR",
+            "Accept: application/json"
+    )
+    @GET("Doctors")
+    suspend fun getDoctors():PopularLawersRetrofitEntity
 
 
 }

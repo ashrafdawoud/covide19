@@ -1,6 +1,7 @@
 package com.example.covide19app.View
 
 import android.Manifest
+import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
@@ -170,6 +171,7 @@ class RegisterInfected : AppCompatActivity() {
             when(it){
                 is DataState.Success<SucssesEntity> -> {
                     Toast.makeText(this,"success",Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this,DoctorsListActivity::class.java))
                 }
                 is DataState.Loading ->{
                 }
